@@ -24,7 +24,7 @@ class InputType extends StatelessWidget {
             hintText: hintText,
             filled: true,
             // isCollapsed: true,//重点，相当于高度包裹的意思，必须设置为true，不然有默认奇妙的最小高度
-            contentPadding: const EdgeInsets.symmetric(horizontal: 21, vertical: 14),//内容内边距，影响高度
+            contentPadding: const EdgeInsets.symmetric(horizontal: 21, vertical: 17),//内容内边距，影响高度
             fillColor:  const Color.fromRGBO(167,191,250,0.14),
             border: OutlineInputBorder(
               gapPadding: 0,

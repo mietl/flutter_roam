@@ -100,7 +100,9 @@ class _LoginPageState extends State<LoginPage> {
           LoginButton(
             onPressed: invokeLogin? startLogin:null,
             child: const Text('登录',style: TextStyle(
-              fontWeight: FontWeight.bold
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF191308)
             )),
           ),
           const SizedBox(height: 14.0),
@@ -120,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
     try{
        var result  = await LoginApi.passwordLogin(username!, password!);
        if(mounted){
-         Toast.show(context, '登录成功');
+         Toast.show(context,'登录成功！');
          context.replace(const MyHomePage());
        }
     }catch(e){

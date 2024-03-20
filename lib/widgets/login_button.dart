@@ -14,11 +14,11 @@ class LoginButton extends StatelessWidget {
         ),
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         onPressed: onPressed,
-        disabledColor: const Color(0xFF81C3DC).withOpacity(0.8),
+        disabledColor: const Color(0xFF8EC3C6).withOpacity(0.7),
         textColor: Colors.white,
-        height: 48,
+        height: 52,
         elevation: 0,
-        color: const Color(0xFF81C3DC),
+        color: const Color(0xFF8EC3C6),
         child: child
     );
   }

@@ -10,7 +10,7 @@ class ApiConstants{
   // username & password base64
   static const String kBasic = 'bWlldGw6MjIxNA=='; //
 
-  static const String baseUrl = 'http://123.207.32.32:1888/api';
+  static const String baseUrl = 'http://123.207.32.32:1888';
 
 
 

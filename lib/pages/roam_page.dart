@@ -13,14 +13,13 @@ class RoamPage extends StatefulWidget {
 class _RoamPageState extends State<RoamPage> {
   int _index = 0;
   final pages = [
-    MyHomePage(),
-    SearchPage(),
-    MyHomePage(),
-    AboutPage(),
+    const MyHomePage(),
+    const SearchPage(),
+    const MyHomePage(),
+    const AboutPage(),
   ];
 
   switchPage(int selectedIndex){
-    print(selectedIndex);
     setState(() {
       _index = selectedIndex;
     });

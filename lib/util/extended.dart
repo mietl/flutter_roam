@@ -29,7 +29,7 @@ extension ContextExtended on BuildContext {
 }
 
 
-extension screenValue on num{
+extension ScreenValue on num{
   double get px=> ScreenKit.px * this;
   double get rpx=> ScreenKit.rpx * this;
 }

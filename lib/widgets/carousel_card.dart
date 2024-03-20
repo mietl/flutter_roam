@@ -18,23 +18,24 @@ class _CarouselCardState extends State<CarouselCard> {
   final CarouselController _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(0),
-      child: Stack(
+    return Stack(
           children: [
-              CarouselSlider(
-                items: buildImageSliders(),
-                carouselController: _controller,
-                options: CarouselOptions(
-                    autoPlay: true,
-                    height: widget.height,
-                    viewportFraction: 1.0,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _current = index;
-                      });
-                    }),
-            ),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CarouselSlider(
+                  items: buildImageSliders(),
+                  carouselController: _controller,
+                  options: CarouselOptions(
+                      autoPlay: true,
+                      height: widget.height,
+                      viewportFraction: 1.0,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+                      }),
+                            ),
+              ),
             Positioned(
               bottom: 7,
               left: 0,
@@ -58,21 +59,17 @@ class _CarouselCardState extends State<CarouselCard> {
                 }).toList(),
               ),
             ),
-      ]),
-    );
+      ]);
   }
 
   List<Widget> buildImageSliders() {
     double width = MediaQuery.of(context).size.width;
 
     final List<Widget> imageSliders = widget.imgList
-        .map((item) => ClipRRect(
-              // borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-              child: Stack(
-                children: <Widget>[
-                  Image.network(item, fit: BoxFit.cover,width: width),
-                ],
-              )))
+        .map((item) => Stack(
+            children: <Widget>[
+              Image.network(item, fit: BoxFit.cover,width: width),
+            ]))
         .toList();
 
     return imageSliders;
