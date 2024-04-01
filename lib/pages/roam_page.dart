@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_roam/pages/about_page.dart';
 import 'package:flutter_roam/pages/home_page.dart';
-import 'package:flutter_roam/pages/search_page.dart';
+
+import 'country_page.dart';
 
 class RoamPage extends StatefulWidget {
   const RoamPage({super.key});
@@ -14,8 +15,7 @@ class _RoamPageState extends State<RoamPage> {
   int _index = 0;
   final pages = [
     const MyHomePage(),
-    const SearchPage(),
-    const MyHomePage(),
+    const CountryPage(),
     const AboutPage(),
   ];
 
@@ -40,10 +40,10 @@ class _RoamPageState extends State<RoamPage> {
             icon: Icon(Icons.lens_outlined),
             label: "漫游",
           ),
-          NavigationDestination(
-            icon: Icon(Icons.search),
-            label: "搜索",
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.search),
+          //   label: "搜索",
+          // ),
           NavigationDestination(
             icon: Icon(Icons.cloud_queue),
             label: "云野",

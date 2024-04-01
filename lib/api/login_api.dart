@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert' show jsonDecode;
 
 import 'package:flutter_roam/api/api_constants.dart';
 import 'package:http/http.dart' as http;

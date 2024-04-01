@@ -1,24 +1,22 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_roam/models/home/categories.dart';
 import 'package:flutter_roam/util/extended.dart';
 
-class ToolNavBar extends StatelessWidget{
+class CategoryNavBar extends StatelessWidget{
   final List<HomeCategories> navList;
-  const ToolNavBar({super.key,required this.navList});
+  const CategoryNavBar({super.key,required this.navList});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(7),
       decoration:  BoxDecoration(
-        color: const Color(0xFFFFFFFF),
+        color: const Color(0xFFF6F3EE),
         borderRadius: BorderRadius.circular(7),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFC7DAFD).withOpacity(.7),
-            offset: const Offset(0,7),
-            blurRadius: 64,
+            color: const Color(0xFFaa874b).withOpacity(.7),
+            offset: const Offset(0,2),
           ),
         ],
       ),

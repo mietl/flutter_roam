@@ -3,10 +3,10 @@ import 'package:flutter_roam/util/extended.dart';
 
 import '../models/home/long_for.dart';
 
-class RowNavWidget extends StatelessWidget{
+class ImageGallery extends StatelessWidget{
   final LongFor entryLongFor;
 
-  const RowNavWidget({super.key, required this.entryLongFor});
+  const ImageGallery({super.key, required this.entryLongFor});
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +53,8 @@ class RowNavWidget extends StatelessWidget{
             ClipRRect(borderRadius: BorderRadius.circular(7),
                 child: Image.network(item.pictureUrl??'',
                     width: 80.px,
-                    errorBuilder:(context, error,stackTrace)=>Image.asset('assets/img/top_bg_tile01.png',width: 80,)
-                )),
+                    errorBuilder:(context, error,stackTrace)=>Image.asset('assets/img/top_bg_tile01.png',width: 80.px)
+            )),
             Container(
                 width: 60.px,
                 alignment: Alignment.center,
