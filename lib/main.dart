@@ -6,6 +6,7 @@ import 'package:flutter_roam/pages/roam_page.dart';
 import 'package:flutter_roam/util/preferences.dart';
 import 'package:flutter_roam/util/screen_kit.dart';
 import 'package:flutter_roam/util/string.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFff9380)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_roam/api/home_api.dart';
 import 'package:flutter_roam/models/home/long_for.dart';
+import 'package:flutter_roam/models/home/roam_image.dart';
 import 'package:flutter_roam/pages/search_page.dart';
 import 'package:flutter_roam/util/extended.dart';
 import 'package:flutter_roam/widgets/carousel_card.dart';
@@ -8,8 +9,13 @@ import 'package:flutter_roam/models/home/categories.dart';
 import 'package:flutter_roam/widgets/image_gallery.dart';
 import 'package:flutter_roam/widgets/loading_box.dart';
 
+import '../util/assets_image.dart';
 import '../widgets/grid_card.dart';
 import '../widgets/category_nav_bar.dart';
+
+import '../models/home/roam_image.dart';
+
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,7 +24,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-final List<String> imgList = List.generate(4, (index) => 'https://api.yimian.xyz/img?type=moe?T=$index');
+
+
 
 class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMixin{
   double _appbarOpacity = 0;
@@ -26,6 +33,10 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
 
   bool loadingIndicator = false;
 
+  final List<RoamImage> imgList = List.generate(4, (index){
+    var src = 'https://api.yimian.xyz/img?type=moe?T=$index';
+    return RoamImage(src,url: src);
+  });
 
   List<HomeCategories> categories = [];
 
@@ -65,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           borderRadius: BorderRadius.all(Radius.circular(28))
         ),
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder:(context)=>const SearchPage()));
+          Get.to(const SearchPage());
+          // Navigator.push(context, MaterialPageRoute(builder:(context)=>const SearchPage()));
         },
         onLongPress: (){
           
@@ -93,10 +105,10 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           const SizedBox(width: 14),
           GestureDetector(
             onTap: (){
-
+      
             },
             child: ClipOval(
-              child: Image.asset('assets/img/avatar.jpeg',width: 32,height: 32)
+              child: Image.asset(AssetsImage.avater,width: 32,height: 32)
             ),
           )
         ],

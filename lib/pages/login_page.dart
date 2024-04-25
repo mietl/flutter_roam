@@ -7,6 +7,7 @@ import 'package:flutter_roam/util/string.dart';
 import 'package:flutter_roam/util/toast.dart';
 import 'package:flutter_roam/widgets/input_type.dart';
 import 'package:flutter_roam/widgets/login_button.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
@@ -120,10 +121,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void startLogin() async {
     try{
-       var result  = await LoginApi.passwordLogin(username!, password!);
+       await LoginApi.passwordLogin(username!, password!);
        if(mounted){
          Toast.show(context,'登录成功！');
-         context.replace(const MyHomePage());
+         //  context.replace(const MyHomePage());
+         Get.off(const MyHomePage());
        }
     }catch(e){
       if(mounted){

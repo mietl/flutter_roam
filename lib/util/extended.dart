@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_roam/pages/webview/index.dart';
+import 'package:get/get.dart';
 
 import 'screen_kit.dart';
 
@@ -26,6 +28,15 @@ extension ContextExtended on BuildContext {
   void pop() {
     Navigator.pop(this);
   }
+
+  void openUrl({String? url,String? title}){
+    if(url==null) return;
+    Navigator.push(this,
+        MaterialPageRoute(builder: (context){
+          return RoamBrowser(url: Uri.parse(url),title: title??'');
+        })
+    );
+  }
 }
 
 
@@ -33,3 +44,15 @@ extension ScreenValue on num{
   double get px=> ScreenKit.px * this;
   double get rpx=> ScreenKit.rpx * this;
 }
+
+
+ void openUrl(String? url,{String? title}){
+    if(url==null) return;
+    
+     var tryUrl = Uri.tryParse(url);
+     if(tryUrl == null || tryUrl.hasScheme){
+      return;
+     }
+
+    Get.to(RoamBrowser(url: tryUrl));
+  }

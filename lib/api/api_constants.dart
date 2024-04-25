@@ -3,7 +3,9 @@ class ApiConstants{
 
   static const String repo = 'https://github.com/mietl/flutter_roam.git';
 
-  static  const String testUrl = 'https://mietl.github.io';
+  static const String testUrl = 'https://mietl.github.io';
+
+  static const String userAgent = 'Mozilla/5.0 (iPhone13,3; U; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/15E148 Safari/602.1';
 
   static const String postBase = 'httpbin.org';
 

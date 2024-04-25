@@ -1,42 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_roam/util/extended.dart';
+
+import '../util/color.dart';
 
 
 final json = [{
     "title": "旅游攻略",
     "text": "获取详细的旅游目的地信息，包括景点介绍、当地文化和旅行建议。获取详细的旅游目的地信息，包括景点介绍、当地文化和旅行建议。",
     'icon': 0xe6c5,
-    'color': 'F0F6FE', // volume_up
-    'iconColor': '3B82F6'
+    'color': '#F0F6FE', // volume_up
+    'iconColor': '#3B82F6',
+    'url': ''
   },
   {
     "title": "行程规划",
     "text": "方便地规划您的行程并管理您的旅行细节。",
     'icon': 0xe351, // keyboard
-    'color':'F2F5F9',
-    'iconColor':'64748b'
+    'color':'#F2F5F9',
+    'iconColor':'#64748b',
+    'url': ''
   },
   {
     "title": "发现景点",
     "text": "找到最佳的景点和地标，安排您的旅行行程。",
     "icon": 0xe415,
-    "color": "FCF2F2",
-    "iconColor": "ef4444"
+    "color": "#FCF2F2",
+    "iconColor": "#ef4444",
+    'url': ''
   },
   {
     "title": "景点推荐",
     "text": "探索当地最美的景点",
     'icon': 0xe176, // code
-    'color':'FEFCEA',
-    'iconColor': 'eab308'
+    'color':'#FEFCEA',
+    'iconColor': '#eab308',
+    'url': ''
   },
   {
     "title": "旅游指南",
     "text": "获取详细的旅游信息",
     'icon': 0xf69f, // desktop_windows
-    'color':'F0F6FE',
-    'iconColor': '15803d'
+    'color':'#F0F6FE',
+    'iconColor': '#15803d',
+    'url': ''
   }];
 
 
@@ -46,22 +54,29 @@ class CardModel {
   int icon;
   Color color;
   Color iconColor;
+  String? url;
 
   CardModel({
     required this.title,
     required this.text,
     required this.icon,
     required this.color,
-    required this.iconColor
+    required this.iconColor,
+    required this.url
   });
 
 
-  static Color getHex(colorStr){
-    return Color(int.parse('FF$colorStr',radix: 16));
-  }
   
   factory CardModel.fromJson(Map<String, dynamic> json){
-    return CardModel(title: json["title"], text: json["text"], icon: json["icon"], color: getHex(json['color']),iconColor: getHex(json['iconColor']));
+    return CardModel(
+      title: json["title"],
+       text: json["text"], 
+       icon: json["icon"], 
+       url: json['url'],
+       color: Color(getHex(json['color'])),
+       iconColor: Color(getHex(json['iconColor']))
+      
+    );
   }
 }
 
@@ -109,6 +124,9 @@ class GridCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
+        onTap: (){
+          openUrl(card.url);
+        },
         child: Container(
           margin: EdgeInsets.only(left: index!=0?14:0),
           padding: const EdgeInsets.all(24),

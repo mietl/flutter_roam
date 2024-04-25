@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,8 +45,8 @@ class _HttpDemoState extends State<HttpDemo> {
           result = "请求失败： status:${response.statusCode},body:${response.body}";
         });
       }
-      debugPrint('Response status: ${response.statusCode}');
-      debugPrint('Response body: ${response.body}');
+      log('Response status: ${response.statusCode}');
+      log('Response body: ${response.body}');
   }
 
   _postMethod() async{

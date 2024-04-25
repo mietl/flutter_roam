@@ -5,3 +5,4 @@ bool isNotEmpty(String? str){
 bool isEmpty(String? str){
   return !isNotEmpty(str);
 }
+

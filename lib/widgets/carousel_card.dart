@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_roam/util/extended.dart';
+import '../models/home/roam_image.dart';
 
 
 
 class CarouselCard extends StatefulWidget {
-  final List<String> imgList;
+  final List<RoamImage> imgList;
   final double height;
   const CarouselCard({super.key,required this.imgList,this.height = 140});
 
@@ -68,7 +70,12 @@ class _CarouselCardState extends State<CarouselCard> {
     final List<Widget> imageSliders = widget.imgList
         .map((item) => Stack(
             children: <Widget>[
-              Image.network(item, fit: BoxFit.cover,width: width),
+              GestureDetector(
+                onTap: (){
+                  openUrl(item.url);
+                },
+                child: Image.network(item.src, fit: BoxFit.cover,width: width),
+              )
             ]))
         .toList();
 

@@ -9,15 +9,19 @@ import 'api_constants.dart';
 
 
 class SearchApi{
-  static Future<List<SuggestsResult>> searchKeywordSuggests(keyword) async{
+  // static Future<> requestHotSuggests() async{
+  //
+  // }
+  
+  static Future<SuggestsResult> searchKeywordSuggests(keyword) async{
     var uri = Uri.parse(ApiConstants.searchUrl);
 
     Map<String, dynamic> bodyParams = {
       "cityId": 45, // 城市
       "keyword": keyword,
       "sourceCode": 702,
-      "checkInDate": dateFormat(DateTime.now()),
-      "checkOutDate": dateFormat(DateTime.now().add(const Duration(days: 1))),
+      "checkInDate": formate(DateTime.now()),
+      "checkOutDate": formate(DateTime.now().add(const Duration(days: 1))),
       "currentCity": 'false',
       "forCtripHotel": 'false',
       "typeFilter": '0'
@@ -30,20 +34,17 @@ class SearchApi{
           "content-type": "application/json",
         },
         // https://stackoverflow.com/questions/54283800/type-int-is-not-a-subtype-of-type-string-in-type-cast-when-sending-a-post-re
+        // https://github.com/dart-lang/http/issues/1174
         body: jsonEncode(bodyParams)
       );
     
 
     final body = jsonDecode(response.body);
 
-    final jsonData = body['data'];
+    final json = body['data'];
 
-    List<SuggestsResult> suggests = [];
+    SuggestsResult ret = SuggestsResult.fromJson(keyword,json);
 
-    if(jsonData!=null){
-      suggests = jsonData['suggests'] == null? [] : List<SuggestsResult>.from(jsonData["suggests"].map((x)=>SuggestsResult.fromJson(x)));
-    }
-    
-    return suggests;
+    return ret;
   }
 }

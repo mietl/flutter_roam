@@ -14,7 +14,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   bool showClearIcon = true;
 
-  List<SuggestsResult> suggestsList = [];
+  List<Suggest> suggestsList = [];
   TextEditingController searchController = TextEditingController();
 
 
@@ -129,7 +129,7 @@ class _SearchPageState extends State<SearchPage> {
     ));
   }
 
-  _buildListTile(SuggestsResult item){
+  _buildListTile(Suggest item){
     return ListTile(
       title: _highlightWord(item.itemName),
       subtitle: Text(toPrice(item.unitPrice),style: const TextStyle(
@@ -141,11 +141,17 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   onSearchInputChanged(keyword) async {
+    // 输入过快时，应当取消上次请求
+    // http不支持终止请求 https://github.com/dart-lang/http/issues/424
     if(keyword.trim().isNotEmpty){
       final suggestsResult = await SearchApi.searchKeywordSuggests(keyword);
-      setState(() {
-        suggestsList = suggestsResult;
-      });
+      // 解决当输入过快时，响应先后是不确定，导致输入和显示当内容不一致
+      if(suggestsResult.keyword==keyword){
+        // 输入的内容与响应内容对应时，才设置
+        setState(() {
+          suggestsList = suggestsResult.suggests;
+        });
+      }
     }
 
     setState(() {

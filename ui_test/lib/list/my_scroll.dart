@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './grid_view.dart';
 
 
 class MyScroll extends StatefulWidget {

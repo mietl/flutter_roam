@@ -7,9 +7,7 @@ import 'package:http/http.dart' as http;
 
 
 class HomeApi{
-  // static Future<> requestHotSuggests() aysnc{
-  //
-  // }
+
 
   static Future<List<HomeCategories>> requestCategories() async {
     var uri = Uri.parse('${ApiConstants.baseUrl}/api/home/categories');
@@ -35,8 +33,4 @@ class HomeApi{
   }
 
 
-    
-  // static Future<String> requestHouseList() aysnc{
-  //
-  // }
 }

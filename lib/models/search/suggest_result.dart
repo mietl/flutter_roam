@@ -1,5 +1,33 @@
 class SuggestsResult {
+  final String keyword;
+  final List<Suggest> suggests;
+
   SuggestsResult({
+    required this.keyword,
+    required this.suggests
+  });
+
+  factory SuggestsResult.fromJson(String keyword,Map<String, dynamic> json){
+    return SuggestsResult(
+      keyword: keyword,
+      suggests: json["suggests"] == null ? [] : List<Suggest>.from(json["suggests"]!.map((x) => Suggest.fromJson(x))),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    "keyword": keyword,
+    "suggests": suggests.map((x) => x.toJson()).toList(),
+  };
+
+  @override
+  String toString(){
+    return "$keyword, $suggests, ";
+  }
+}
+
+
+class Suggest {
+  Suggest({
     required this.areaId,
     required this.areaType,
     required this.areaName,
@@ -63,8 +91,8 @@ class SuggestsResult {
   final List<dynamic> itemShowNameHighLight;
   final String? matchInfo;
 
-  factory SuggestsResult.fromJson(Map<String, dynamic> json){
-    return SuggestsResult(
+  factory Suggest.fromJson(Map<String, dynamic> json){
+    return Suggest(
       areaId: json["areaId"],
       areaType: json["areaType"],
       areaName: json["areaName"],
