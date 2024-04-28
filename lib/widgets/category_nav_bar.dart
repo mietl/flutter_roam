@@ -1,11 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_roam/models/home/categories.dart';
-import 'package:flutter_roam/pages/webview/index.dart';
 import 'package:flutter_roam/util/extended.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class CategoryNavBar extends StatelessWidget{
   final List<HomeCategories> navList;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_roam/models/country/house_space.dart' hide Image;
-import 'package:flutter_roam/util/extended.dart';
-
+import 'package:flutter_roam/models/country/house_space.dart';
+import 'package:flutter_roam/widgets/star_rating.dart';
+// import 'package:flutter_roam/util/extended.dart';
 import '../util/assets_image.dart';
 import '../util/color.dart';
 
@@ -119,6 +119,7 @@ class HouseCardItem extends StatelessWidget {
         child: Image.asset(AssetsImage.star,width: 36,height: 36,)
     );
   }
+
   discoveryContentType9() {
     return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
@@ -167,15 +168,16 @@ class HouseCardItem extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(Icons.star,color: Colors.white,),
+                StarRating(rating: double.parse(houseData.commentScore??'0'),maxRating: 5),
                 Text(
                   '¥${houseData.finalPrice}',
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white
                     )
-                ),
+                )
               ],
             )
           ]

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_roam/api/api_constants.dart';
 import 'package:flutter_roam/api/home_api.dart';
 import 'package:flutter_roam/models/home/long_for.dart';
 import 'package:flutter_roam/models/home/roam_image.dart';
@@ -12,8 +13,6 @@ import 'package:flutter_roam/widgets/loading_box.dart';
 import '../util/assets_image.dart';
 import '../widgets/grid_card.dart';
 import '../widgets/category_nav_bar.dart';
-
-import '../models/home/roam_image.dart';
 
 import 'package:get/get.dart';
 
@@ -31,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
   double _appbarOpacity = 0;
   double showAppbarPos = 140;
 
-  bool loadingIndicator = false;
+  bool loadingIndicator = true;
 
   final List<RoamImage> imgList = List.generate(4, (index){
     var src = 'https://api.yimian.xyz/img?type=moe?T=$index';
@@ -76,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           borderRadius: BorderRadius.all(Radius.circular(28))
         ),
         onPressed: (){
-          Get.to(const SearchPage());
+          Get.to(()=>const SearchPage());
           // Navigator.push(context, MaterialPageRoute(builder:(context)=>const SearchPage()));
         },
         onLongPress: (){
@@ -105,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           const SizedBox(width: 14),
           GestureDetector(
             onTap: (){
-      
+              openUrl(ApiConstants.testUrl);
             },
             child: ClipOval(
               child: Image.asset(AssetsImage.avater,width: 32,height: 32)
@@ -123,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
          onNotification: (ScrollNotification notification){
            if(notification is ScrollUpdateNotification &&
                notification.depth == 0){
-             _observeScroll(notification.metrics.pixels);
+             // _observeScroll(notification.metrics.pixels);
            }
            return true;
          },
@@ -140,7 +139,6 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
                GridCard(),
                SizedBox(height: 7.px),
                CategoryNavBar(navList:categories),
-               // ...List.generate(1000, (index) => const ListTile(title: Text('测试'),))
              ],
            ),
          ),
@@ -152,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
   Future<void> _onPullDownRefresh() async{
     getInitData();
   }
+
   @override
   bool get wantKeepAlive => true;
 
@@ -168,10 +167,6 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
   }
 
   void getInitData() async {
-    setState(() {
-      loadingIndicator = true;
-    });
-
     try {
       List results = await Future.wait([
         HomeApi.requestEntryLongFor(),
@@ -183,9 +178,11 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
     } catch (error) {
       // 处理错误情况
     } finally {
-      setState(() {
-        loadingIndicator = false;
-      });
+      if(mounted){
+        setState(() {
+          loadingIndicator = false;
+        });
+      }
     }
   }
 }

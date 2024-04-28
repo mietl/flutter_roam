@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_roam/api/api_constants.dart';
 import 'package:flutter_roam/api/login_api.dart';
 import 'package:flutter_roam/pages/home_page.dart';
-import 'package:flutter_roam/util/extended.dart';
+// import 'package:flutter_roam/util/extended.dart';
 import 'package:flutter_roam/util/string.dart';
 import 'package:flutter_roam/util/toast.dart';
 import 'package:flutter_roam/widgets/input_type.dart';
@@ -102,8 +102,7 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: invokeLogin? startLogin:null,
             child: const Text('登录',style: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF191308)
+              color: Color(0xFF424242)
             )),
           ),
           const SizedBox(height: 14.0),
@@ -125,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
        if(mounted){
          Toast.show(context,'登录成功！');
          //  context.replace(const MyHomePage());
-         Get.off(const MyHomePage());
+         Get.off(()=> const MyHomePage());
        }
     }catch(e){
       if(mounted){

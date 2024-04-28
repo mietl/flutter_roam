@@ -62,7 +62,7 @@ class HouseSpaceData {
   final int? houseId;
   final String? houseName;
   final dynamic houseTags;
-  final Image? image;
+  final HouseImage? image;
   final String? commentScore;
   final ExtendMap? extendMap;
   final String? summaryText;
@@ -85,7 +85,7 @@ class HouseSpaceData {
       houseId: json["houseId"],
       houseName: json["houseName"],
       houseTags: json["houseTags"],
-      image: json["image"] == null ? null : Image.fromJson(json["image"]),
+      image: json["image"] == null ? null : HouseImage.fromJson(json["image"]),
       commentScore: json["commentScore"],
       extendMap: json["extendMap"] == null ? null : ExtendMap.fromJson(json["extendMap"]),
       summaryText: json["summaryText"],
@@ -150,8 +150,8 @@ class ExtendMap {
 
 }
 
-class Image {
-  Image({
+class HouseImage {
+  HouseImage({
     required this.url,
     required this.width,
     required this.height,
@@ -161,8 +161,8 @@ class Image {
   final int? width;
   final int? height;
 
-  factory Image.fromJson(Map<String, dynamic> json){
-    return Image(
+  factory HouseImage.fromJson(Map<String, dynamic> json){
+    return HouseImage(
       url: json["url"],
       width: json["width"],
       height: json["height"],

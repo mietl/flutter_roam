@@ -45,7 +45,7 @@ class ImageGallery extends StatelessWidget{
   Widget _buildNavTile(ListElement item){
     return GestureDetector(
       onTap: (){
-        openUrl(item.imageUrl);
+        openUrl(item.pictureUrl);
       },
       child: Container(
         decoration: BoxDecoration(

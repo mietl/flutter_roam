@@ -12,7 +12,6 @@ class LoginButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25)
         ),
-        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         onPressed: onPressed,
         disabledColor: const Color(0xFF8EC3C6).withOpacity(0.7),
         textColor: Colors.white,

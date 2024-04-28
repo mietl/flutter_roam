@@ -50,9 +50,9 @@ extension ScreenValue on num{
     if(url==null) return;
     
      var tryUrl = Uri.tryParse(url);
-     if(tryUrl == null || tryUrl.hasScheme){
-      return;
+     if(tryUrl == null || !tryUrl.hasScheme){
+       return;
      }
 
-    Get.to(RoamBrowser(url: tryUrl));
+    Get.to(()=>RoamBrowser(url: tryUrl));
   }

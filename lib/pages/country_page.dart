@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_roam/pages/country_tab_page.dart';
+import 'package:flutter_roam/pages/country_tab/view.dart';
 
 class CountryPage extends StatefulWidget {
   const CountryPage({super.key});
@@ -54,7 +54,7 @@ class _CountryPageState extends State<CountryPage> with TickerProviderStateMixin
   _buildTabViews() {
     return TabBarView(
         controller: _tabController,
-        children: series.map<Widget>((tab)=>CountryTabPage(cid: tab['cid'])).toList()
+        children: series.map<Widget>((tab)=>CountryTabPage(tab['cid'])).toList()
     );
   }
 }
