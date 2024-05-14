@@ -20,19 +20,6 @@ class _CountryTabPageState extends State<CountryTabPage> with AutomaticKeepAlive
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    // return GetX<CountryController>(
-    //   builder: (controller){
-    //     return LoadingBox(
-    //         loading: controller.loading.value,
-    //         child: RefreshIndicator(
-    //           onRefresh: controller.onRefresh,
-    //           child: houseView(),
-    //         )
-    //     );
-    //   },
-    //   init: countryController,
-    // );
-
     return Obx(() => LoadingBox(
         loading: controller.loading.value,
         child: RefreshIndicator(

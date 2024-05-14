@@ -140,11 +140,12 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  onSearchInputChanged(keyword) async {
+  onSearchInputChanged(String keyword) async {
     // 输入过快时，应当取消上次请求
     // http不支持终止请求 https://github.com/dart-lang/http/issues/424
     if(keyword.trim().isNotEmpty){
       final suggestsResult = await SearchApi.searchKeywordSuggests(keyword);
+
       // 解决当输入过快时，响应先后是不确定，导致输入和显示当内容不一致
       if(suggestsResult.keyword==keyword){
         // 输入的内容与响应内容对应时，才设置
@@ -152,6 +153,9 @@ class _SearchPageState extends State<SearchPage> {
           suggestsList = suggestsResult.suggests;
         });
       }
+    }else{
+      suggestsList = [];
+     //  隐藏搜搜建议 TODO
     }
 
     setState(() {

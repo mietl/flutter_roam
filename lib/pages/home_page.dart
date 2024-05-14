@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
          onNotification: (ScrollNotification notification){
            if(notification is ScrollUpdateNotification &&
                notification.depth == 0){
-             // _observeScroll(notification.metrics.pixels);
+             _observeScroll(notification.metrics.pixels);
            }
            return true;
          },

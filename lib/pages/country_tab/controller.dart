@@ -12,9 +12,8 @@ class CountryTabController extends GetxController{
 
   final loading = true.obs;
   final houseList = <HouseSpace>[].obs;
-
-
   int currentPage = 1;
+
   final ScrollController scrollController = ScrollController();
 
   CountryTabController(this.cid);
@@ -22,9 +21,7 @@ class CountryTabController extends GetxController{
   @override
   void onInit(){
     loadHouseList();
-
     scrollController.addListener(_handleScroll);
-
     super.onInit();
   }
 
